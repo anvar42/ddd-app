@@ -4,7 +4,7 @@ export class Identifier {
         private _value: string
     ) {}
 
-    public getValue() {
+    public  getValue() {
         return this._value;
     }
 }
