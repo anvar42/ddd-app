@@ -8,7 +8,7 @@ export class User {
         private lastname: string,
         private pnfl: string,
         private address: Address,
-        private createdAt?: string,
+        private createdAt?: Date,
     ){}
 
     public getID() {
