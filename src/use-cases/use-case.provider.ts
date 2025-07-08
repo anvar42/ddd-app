@@ -2,7 +2,7 @@ import { Provider } from "@nestjs/common";
 import { UseCaseSymbols } from "./di.symbols";
 import { GenerateIdentifierUseCaseImpl } from "./Identifier";
 import { CreateUserUseCaseImpl } from "./user/create";
-import { CreateBankAccountUseCaseImpl } from "./bank-account";
+import { CreateBankAccountUseCaseImpl, GetAllBankAccountUseCaseImpl } from "./bank-account";
 import { CreateAmountUseCaseImpl } from "./amount";
 
 export const UseCaseProviders: Provider[] = [
@@ -21,5 +21,9 @@ export const UseCaseProviders: Provider[] = [
     {
         provide: UseCaseSymbols.CreateAmountUseCase,
         useClass: CreateAmountUseCaseImpl
+    },
+    {
+        provide: UseCaseSymbols.GetAllBankAccountUseCase,
+        useClass: GetAllBankAccountUseCaseImpl,
     }
 ];

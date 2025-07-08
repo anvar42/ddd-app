@@ -2,11 +2,11 @@ import { Inject } from "@nestjs/common";
 import { BankAccountRepository } from "src/repositories/bank-account";
 import { RepositorySymbols } from "src/repositories/di.symbols";
 
-export interface GetBankAccountUseCase {
+export interface GetAllBankAccountUseCase {
     execute(): Promise<any>;
 }
 
-export class GetBankAccountUseCaseImpl implements GetBankAccountUseCase {
+export class GetAllBankAccountUseCaseImpl implements GetAllBankAccountUseCase {
     constructor(
         @Inject(RepositorySymbols.CreateBankAccountRepository) private readonly bankAccountRepository: BankAccountRepository,
     ) {}

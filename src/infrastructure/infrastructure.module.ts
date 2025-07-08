@@ -13,6 +13,10 @@ import { GenerateAccountNumberImpl } from "./shared/generate-account-number";
             provide: InfrastructureSymbols.GenerateAccountNumber,
             useClass: GenerateAccountNumberImpl,
         }
+    ],
+    exports: [
+        InfrastructureSymbols.IdentifierGenerator,
+        InfrastructureSymbols.GenerateAccountNumber,
     ]
 })
 export class infrastructureModule {}

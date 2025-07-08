@@ -1,14 +1,17 @@
 import { Module } from "@nestjs/common";
 import { CreateBankAccountControllerImpl } from "./bank-account/controllers/bank-account";
-import { RepositorySymbols } from "src/repositories/di.symbols";
-import { BankAccountRepositoryImpl } from "src/infrastructure/database/in-memory/repository/create.bank-account";
-import { GetBankAccountUseCaseImpl } from "src/use-cases/bank-account/get.bank-accounts";
 import { UseCaseProviders } from "src/use-cases/use-case.provider";
+import { infrastructureModule } from "src/infrastructure/infrastructure.module";
+import { RepositoryProviders } from "src/repositories";
+import { ResenterProviders } from "src/presenters/presenter.provider";
 
 @Module({
+    imports: [infrastructureModule],
     controllers: [
         CreateBankAccountControllerImpl
     ],
-    providers: [...UseCaseProviders]
+    providers: [
+        ...UseCaseProviders, ...RepositoryProviders, ...ResenterProviders
+    ]
 })
 export class ApiModule {}
