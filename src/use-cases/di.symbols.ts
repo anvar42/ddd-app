@@ -6,4 +6,6 @@ export const UseCaseSymbols = {
 
     CreateUserUseCase: Symbol.for("CreateUserUseCaseImpl"),
     CreateAmountUseCase: Symbol.for("CreateAmountUseCase"),
+
+    CreateCardUseCase: Symbol.for("CreateCardUseCaseImpl"),
 }

@@ -1,7 +1,6 @@
 import { Inject } from "@nestjs/common";
 import { Address, User } from "src/domain";
-import { UseCaseSymbols } from "src/use-cases/di.symbols";
-import { GenerateIdentifierUseCase } from "src/use-cases/Identifier";
+import { FactorySymbols, IdentifierFactory } from "src/factories";
 
 export interface CreateUserDto {
     firstname: string
@@ -16,11 +15,11 @@ export interface CreateUserUseCase {
 
 export class CreateUserUseCaseImpl implements CreateUserUseCase {
     constructor(
-       @Inject(UseCaseSymbols.GenerateIdentifierUseCase) private readonly generateIdentifierUseCase: GenerateIdentifierUseCase,
+       @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory : IdentifierFactory,
     ) {}
 
     public async execute(params: CreateUserDto) {
-        const identifier = await this.generateIdentifierUseCase.execute();
+        const identifier = await this.identifierFactory.generate();
         const address = new Address(identifier, params.address);
         const createdAt = new Date();
 

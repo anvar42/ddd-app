@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { CreateBankAccountControllerImpl } from "./bank-account/controllers/bank-account";
+import { CreateBankAccountControllerImpl } from "./bank-account/controllers";
 import { UseCaseProviders } from "src/use-cases/use-case.provider";
 import { infrastructureModule } from "src/infrastructure/infrastructure.module";
 import { RepositoryProviders } from "src/repositories";
