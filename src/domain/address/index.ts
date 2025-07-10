@@ -1,8 +1,6 @@
-import { Identifier } from "../Identifier";
 
 export class Address {
     constructor(
-        private id: Identifier,
         private name: string,
     ){}
 
