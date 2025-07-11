@@ -31,8 +31,8 @@ export class CreateBankAccountDto {
         required: true,
     })
     @IsNotEmpty()
-    @IsNumber()
-    phoneNumber: number;
+    @IsString()
+    phoneNumber: string;
 
     @ApiProperty({
         example: "12345671234567",
