@@ -4,6 +4,7 @@ import { BankAccount } from "src/domain";
 import { Inject } from "@nestjs/common";
 import { RepositorySymbols } from "src/repositories/di.symbols";
 import { BankAccountFactory, FactorySymbols, UserFactory } from "src/factories";
+import { UserRepository } from '../../repositories';
 
 export interface CreateBankAccountUseCase {
     execute(params: CreateBankAccountDto): Promise<BankAccount>;
@@ -11,9 +12,10 @@ export interface CreateBankAccountUseCase {
 
 export class CreateBankAccountUseCaseImpl implements CreateBankAccountUseCase  {
     constructor(
-        @Inject(RepositorySymbols.CreateBankAccountRepository) private readonly bankAccountRepository: BankAccountRepository,
+        @Inject(RepositorySymbols.BankAccountRepository) private readonly bankAccountRepository: BankAccountRepository,
         @Inject (FactorySymbols.UserFactory) private readonly userFactory: UserFactory,
-        @Inject(FactorySymbols.BankAccountFactory) private readonly bankAccountFactory: BankAccountFactory
+        @Inject(FactorySymbols.BankAccountFactory) private readonly bankAccountFactory: BankAccountFactory,
+        @Inject(RepositorySymbols.UserRepository)private readonly userRepository: UserRepository,
     ) {}
 
     public async execute(params: CreateBankAccountDto) {
@@ -24,9 +26,12 @@ export class CreateBankAccountUseCaseImpl implements CreateBankAccountUseCase  {
             pnfl: params.pnfl,
             phoneNumber: params.phoneNumber,
         });
+        await this.userRepository.save(user);
         const newBankAccount = this.bankAccountFactory.restore({
             owner: user,
         });
+
+        console.log(newBankAccount, "newBankAccount");
 
         await this.bankAccountRepository.save(newBankAccount);
         return newBankAccount;

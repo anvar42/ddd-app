@@ -8,7 +8,7 @@ export interface GetAllBankAccountUseCase {
 
 export class GetAllBankAccountUseCaseImpl implements GetAllBankAccountUseCase {
     constructor(
-        @Inject(RepositorySymbols.CreateBankAccountRepository) private readonly bankAccountRepository: BankAccountRepository,
+        @Inject(RepositorySymbols.BankAccountRepository) private readonly bankAccountRepository: BankAccountRepository,
     ) {}
 
     public async execute(): Promise<any> {

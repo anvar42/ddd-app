@@ -2,10 +2,15 @@ import { Module } from "@nestjs/common";
 import { InfrastructureSymbols } from "./di.symbols";
 import { IdentifierGeneratorImpl } from "./shared/uuid-generator";
 import { GenerateAccountNumberImpl } from "./shared/generate-account-number";
-import { UserRepositoryImpl } from './database/in-memory/repository/create.user';
+import { RepositorySymbols } from '../repositories';
+import { BankAccountRepositoryImpl, UserRepositoryImpl } from './database/in-memory';
 
 @Module({
     providers: [
+        {
+            provide: RepositorySymbols.BankAccountRepository,
+            useClass: BankAccountRepositoryImpl
+        },
         {
             provide: InfrastructureSymbols.IdentifierGenerator,
             useClass: IdentifierGeneratorImpl
@@ -15,14 +20,15 @@ import { UserRepositoryImpl } from './database/in-memory/repository/create.user'
             useClass: GenerateAccountNumberImpl,
         },
         {
-          provide: InfrastructureSymbols.UserRepository,
+          provide: RepositorySymbols.UserRepository,
           useClass: UserRepositoryImpl,
-        }
+        },
     ],
     exports: [
         InfrastructureSymbols.IdentifierGenerator,
         InfrastructureSymbols.GenerateAccountNumber,
-        InfrastructureSymbols.UserRepository,
+        RepositorySymbols.BankAccountRepository,
+        RepositorySymbols.UserRepository,
     ]
 })
 export class infrastructureModule {}

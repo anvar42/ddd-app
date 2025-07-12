@@ -1,4 +1,5 @@
 
 export const RepositorySymbols = {
-    CreateBankAccountRepository: Symbol.for("CreateBankAccountRepositoryImpl"),
+    BankAccountRepository: Symbol.for("BankAccountRepositoryImpl"),
+    UserRepository:  Symbol.for("UserRepositoryImpl"),
 }

@@ -1,8 +1,7 @@
 import { Inject } from "@nestjs/common";
 import { User } from "src/domain";
 import { FactorySymbols, UserFactory, UserParams } from 'src/factories';
-import { InfrastructureSymbols } from '../../../infrastructure/di.symbols';
-import { UserRepository } from '../../../repositories/user';
+import { RepositorySymbols, UserRepository } from '../../../repositories';
 
 
 export interface CreateUserUseCase {
@@ -12,7 +11,7 @@ export interface CreateUserUseCase {
 export class CreateUserUseCaseImpl implements CreateUserUseCase {
     constructor(
        @Inject(FactorySymbols.UserFactory) private readonly userFactory: UserFactory,
-       @Inject(InfrastructureSymbols.UserRepository)private readonly userRepository: UserRepository,
+       @Inject(RepositorySymbols.UserRepository)private readonly userRepository: UserRepository,
     ) {}
 
     public async execute(params: UserParams) {
