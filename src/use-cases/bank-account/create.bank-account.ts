@@ -31,6 +31,8 @@ export class CreateBankAccountUseCaseImpl implements CreateBankAccountUseCase  {
             owner: user,
         });
 
+        console.log(newBankAccount, "newBankAccount");
+
         await this.bankAccountRepository.save(newBankAccount);
         return newBankAccount;
     }

@@ -3,14 +3,13 @@ import { InfrastructureSymbols } from "./di.symbols";
 import { IdentifierGeneratorImpl } from "./shared/uuid-generator";
 import { GenerateAccountNumberImpl } from "./shared/generate-account-number";
 import { RepositorySymbols } from '../repositories';
-import { BankAccountPresenterImpl } from '../presenters';
-import { UserRepositoryImpl } from './database/in-memory';
+import { BankAccountRepositoryImpl, UserRepositoryImpl } from './database/in-memory';
 
 @Module({
     providers: [
         {
             provide: RepositorySymbols.BankAccountRepository,
-            useClass: BankAccountPresenterImpl
+            useClass: BankAccountRepositoryImpl
         },
         {
             provide: InfrastructureSymbols.IdentifierGenerator,

@@ -7,6 +7,7 @@ export class BankAccountRepositoryImpl implements BankAccountRepository {
 
     public async save(bankAccount: BankAccount) {
         this.map.set(bankAccount.getID(), bankAccount);
+        return bankAccount;
     }
 
     public async getAllData() {
