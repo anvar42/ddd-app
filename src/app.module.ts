@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { EnvironmentRunnerImple } from './config/env-runner';
 import { ConfigModule } from '@nestjs/config';
-import { ApiModule } from './application/api/api.module';
+import { ApiModule } from './application';
 
 @Module({
   imports: [

@@ -1,30 +1,29 @@
 import { Inject } from "@nestjs/common";
-import { Address, User } from "src/domain";
-import { FactorySymbols, IdentifierFactory } from "src/factories";
+import { User } from "src/domain";
+import { FactorySymbols, UserFactory, UserParams } from 'src/factories';
+import { InfrastructureSymbols } from '../../../infrastructure/di.symbols';
+import { UserRepository } from '../../../repositories/user';
 
-export interface CreateUserDto {
-    firstname: string
-    lastname: string
-    pnfl: string
-    address: string
-}
 
 export interface CreateUserUseCase {
-    execute(params: CreateUserDto): Promise<User>
+    execute(params: UserParams): Promise<User>
 }
 
 export class CreateUserUseCaseImpl implements CreateUserUseCase {
     constructor(
-       @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory : IdentifierFactory,
+       @Inject(FactorySymbols.UserFactory) private readonly userFactory: UserFactory,
+       @Inject(InfrastructureSymbols.UserRepository)private readonly userRepository: UserRepository,
     ) {}
 
-    public async execute(params: CreateUserDto) {
-        const identifier = await this.identifierFactory.generate();
-        const address = new Address(identifier, params.address);
-        const createdAt = new Date();
-
-        const newUser = new User(identifier, params.firstname, params.lastname, params.pnfl, address, createdAt);
-
-        return newUser;
+    public async execute(params: UserParams) {
+        const user = this.userFactory.restore({
+          firstname: params.firstname,
+          lastname: params.lastname,
+          pnfl: params.pnfl,
+          address: params.address,
+          phoneNumber: params.phoneNumber
+        });
+        await this.userRepository.save(user);
+        return user;
     }
 }

@@ -26,7 +26,7 @@ export class CreateBankAccountUseCaseImpl implements CreateBankAccountUseCase  {
         });
         const newBankAccount = this.bankAccountFactory.restore({
             owner: user,
-        })
+        });
 
         await this.bankAccountRepository.save(newBankAccount);
         return newBankAccount;

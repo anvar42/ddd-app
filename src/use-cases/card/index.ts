@@ -4,7 +4,7 @@ import { Card } from "src/domain";
 import { FactorySymbols, IdentifierFactory } from "src/factories";
 
 export interface CreateCardUseCase {
-    execute(dto: CreateCardDto): Promise<Card>;
+    execute(dto: CreateCardDto): Promise<void>;
 }
 
 export class CreateBankCardUseCaseImple implements CreateCardUseCase {
@@ -12,7 +12,7 @@ export class CreateBankCardUseCaseImple implements CreateCardUseCase {
         @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory : IdentifierFactory,
     ) {}
 
-    public async execute(dto: CreateCardDto): Promise<Card> {
+    public async execute(dto: CreateCardDto): Promise<void> {
         const id = this.identifierFactory.generate();
         // const newCard = await new Card(id, dto.ownerId, )
     }

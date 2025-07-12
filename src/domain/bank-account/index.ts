@@ -20,7 +20,7 @@ export class BankAccount {
         return this.id;
     }
 
-    public getAccountNumber() {
+    public getBankAccountNumber() {
         return this.accountNumber;
     }
 
@@ -28,7 +28,7 @@ export class BankAccount {
         return this.bankId;
     }
 
-    public getOwnerId() {
+    public getOwner() {
         return this.owner;
     }
 

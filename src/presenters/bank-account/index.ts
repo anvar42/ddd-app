@@ -1,16 +1,24 @@
 import * as Domain from "../../domain";
 
-export type BankAccountExternalPrinted = {}
+export type BankAccountExternalPrinted = {
+  bankAccountId: string;
+  username: string;
+  bankAccountNumber: string;
+  address: string;
+}
 
-export interface ReturnTypeCreatedBankAccount {
+export interface BankAccountPresenter {
     printForExternal(entity: Domain.BankAccount): Promise<BankAccountExternalPrinted>;
 }
 
-export class ReturnTypeCreatedBankAccountImpl implements ReturnTypeCreatedBankAccount {
+export class BankAccountPresenterImpl implements BankAccountPresenter {
 
     public async printForExternal(entity: Domain.BankAccount): Promise<BankAccountExternalPrinted> {
         return {
-
+          bankAccountId: entity.getID().getValue(),
+          username: entity.getOwner().getFirstName(),
+          bankAccountNumber: entity.getBankAccountNumber(),
+          address: entity.getOwner().getAddress().getName(),
         }
     }
 }

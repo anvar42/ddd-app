@@ -1,4 +1,4 @@
-import { Amount } from "src/domain/amount";
+import { Amount } from '../../domain';
 
 export interface CreateAmountUseCase {
     execute(): Promise<Amount>;

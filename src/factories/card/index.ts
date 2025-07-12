@@ -4,7 +4,7 @@ import { FactorySymbols } from "../di-symbols";
 import { IdentifierFactory } from "../identifier";
 
 export interface CardFactory {
-    restore(params: CardParams): Domain.Card;
+    restore(params: CardParams): void;
 }
 
 export type CardParams = {
@@ -23,7 +23,7 @@ export class CardFactoryImpl implements CardFactory {
         @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory: IdentifierFactory
     ) {}
 
-    public restore(params: CardParams): Domain.Card {
+    public restore(params: CardParams) {
         // return new Domain.Card(
         //     this.identifierFactory.generate(),
         //     params.ownerId,
