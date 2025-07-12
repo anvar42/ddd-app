@@ -1,17 +1,17 @@
-import { Amount } from "../amount";
+import { Amount } from "../base";
 import { Identifier } from "../Identifier";
 import { User } from "../user";
 
 export class BankAccount {
     constructor(
         private id: Identifier,
-        private bankId: number,
-        private ownerId: User,
+        private bankId: string,
+        private owner: User,
         private accountNumber: string,
         private balance: Amount,
         private bankAccountType: BankAccountType,
         private status: BankAccountStatus,
-        private createAt: Date,
+        private createAt: Date = new Date(),
     ) {
         this.checkBalance();
     }
@@ -20,7 +20,7 @@ export class BankAccount {
         return this.id;
     }
 
-    public getAccountNumber() {
+    public getBankAccountNumber() {
         return this.accountNumber;
     }
 
@@ -28,8 +28,8 @@ export class BankAccount {
         return this.bankId;
     }
 
-    public getOwnerId() {
-        return this.ownerId;
+    public getOwner() {
+        return this.owner;
     }
 
     public getBalance() {

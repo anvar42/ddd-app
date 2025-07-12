@@ -1,4 +1,4 @@
-import { Address } from "../address";
+import { Address } from "../base";
 import { Identifier } from "../Identifier";
 
 export class User {
@@ -7,6 +7,7 @@ export class User {
         private firstname: string,
         private lastname: string,
         private pnfl: string,
+        private phoneNumber: string,
         private address: Address,
         private createdAt?: Date,
     ){}
@@ -29,6 +30,10 @@ export class User {
 
     public getAddress() {
         return this.address;
+    }
+
+    public getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     public getCreatedAt() {

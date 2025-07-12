@@ -4,7 +4,18 @@ import { FactorySymbols } from "../di-symbols";
 import { IdentifierFactory } from "../identifier";
 
 export interface CardFactory {
-    restore(params: Params): Domain.Card;
+    restore(params: CardParams): void;
+}
+
+export type CardParams = {
+    ownerId: string,
+    cardNumber: string,
+    cardHolderName: string,
+    expirationDate: string,
+    cvv: string,
+    pinCodeHash: string,
+    isVirtual: boolean,
+    cardType: Domain.CardType
 }
 
 export class CardFactoryImpl implements CardFactory {
@@ -12,15 +23,11 @@ export class CardFactoryImpl implements CardFactory {
         @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory: IdentifierFactory
     ) {}
 
-    public restore(params: Params): Domain.Card {
-        return new Domain.Card(
-            this.identifierFactory.generate(),
-            params.ownerId,
-            new Domain.CardNumber("")
-        )
-    }
-}
+    public restore(params: CardParams) {
+        // return new Domain.Card(
+        //     this.identifierFactory.generate(),
+        //     params.ownerId,
 
-export interface Params {
-    ownerId: string
+        // )
+    }
 }

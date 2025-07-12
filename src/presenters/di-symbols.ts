@@ -1,4 +1,4 @@
 
 export const PresenterSymbols = {
-    ReturnTypeCreatedBankAccount: Symbol.for("ReturnTypeCreatedBankAccountImpl"),
+    BankAccountPresenter: Symbol.for("BankAccountPresenterImpl"),
 }

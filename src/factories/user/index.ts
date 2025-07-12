@@ -1,33 +1,35 @@
 import { Inject } from "@nestjs/common";
 import { Address, User } from "src/domain";
-import { IdentifierFactory } from "../identifier";
 import { FactorySymbols } from "../di-symbols";
-
-export type UserParams = {
-    id?: string,
-    firstName: string,
-    lastName: string,
-    pnfl: string,
-    address: string,
-}
+import { IdentifierFactory } from "../identifier";
 
 export interface UserFactory {
     restore(params: UserParams): User
 }
 
+export type UserParams = {
+    id?: string,
+    firstname: string,
+    lastname: string,
+    pnfl: string,
+    phoneNumber: string,
+    address: string,
+    createdAt?: Date,
+}
+
 export class UserFactoryImpl implements UserFactory {
     constructor(
         @Inject(FactorySymbols.IdentifierFactory) private readonly identifierFactory: IdentifierFactory
-    ){}
+    ) {}
 
     public restore(params: UserParams) {
-        const id = this.identifierFactory.generate();
         return new User(
-            id,
-            params.firstName,
-            params.lastName,
+            this.identifierFactory.generate(params.id),
+            params.firstname,
+            params.lastname,
             params.pnfl,
-            new Address(params.address),
+            params.phoneNumber,
+            new Address(params.address)
         )
     }
 }

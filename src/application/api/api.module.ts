@@ -4,6 +4,7 @@ import { UseCaseProviders } from "src/use-cases/use-case.provider";
 import { infrastructureModule } from "src/infrastructure/infrastructure.module";
 import { RepositoryProviders } from "src/repositories";
 import { ResenterProviders } from "src/presenters/presenter.provider";
+import { FactoryProviders } from '../../factories/factory.provider';
 
 @Module({
     imports: [infrastructureModule],
@@ -11,7 +12,7 @@ import { ResenterProviders } from "src/presenters/presenter.provider";
         CreateBankAccountControllerImpl
     ],
     providers: [
-        ...UseCaseProviders, ...RepositoryProviders, ...ResenterProviders
+        ...UseCaseProviders, ...RepositoryProviders, ...ResenterProviders, ...FactoryProviders
     ]
 })
 export class ApiModule {}
