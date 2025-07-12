@@ -1,69 +1,59 @@
 import { Identifier } from "../Identifier";
+import { User } from '../user';
 
 export class Card {
     constructor(
         private id: Identifier,
-        private ownerId: string,
+        private owner: User,
         private cardNumber: string,
-        private cardHolderName: string,
         private expirationDate: string,
-        private cvv: string,
         private _pinCodeHash: string,
+        private cardType: CardType,
         private balance: number = 0,
         private status: CardStatus = CardStatus.ACTIVE,
         private updatedAt: Date = new Date(),
         private createdAt: Date = new Date(),
         private isVirtual: boolean  = false,
         private isFrozen: boolean  = false,
-        private cardType: CardType,
     ) {}
 
     public getID() {
         return this.id;
     }
 
-    public ownerID() {
-        return this.ownerId;
+    public getOwner() {
+        return this.owner;
     }
 
     public getCardNumber() {
         return this.cardNumber;
     }
 
-    public getCardHolderName() {
-        return this.cardHolderName;
-    }
-
-
     public getExpirationDate() {
         return this.expirationDate;
-    }
-
-    public getCvv() {
-        return this.cvv;
     }
 
     public getBalance() {
         return this.balance;
     }
 
-    public getstatus() {
+    public getStatus() {
         return this.status;
     }
 
-    public getisVirtual() {
+    public getIsVirtual() {
         return this.isVirtual;
     }
 
-    public getisFrozen() {
+    public getIsFrozen() {
         return this.isFrozen;
     }
 
-    public getcardType() {
+    public getCardType() {
         return this.cardType;
     }
 
-    public getcreatedAt() {
+    public getCreatedAt() {
         return this.createdAt;
     }
 }

@@ -39,4 +39,8 @@ export class User {
     public getCreatedAt() {
         return this.createdAt;
     }
+
+    public getFullName(){
+      return this.firstname + " " + this.lastname;
+    }
 }

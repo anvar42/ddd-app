@@ -3,6 +3,7 @@ import { UseCaseSymbols } from "./di.symbols";
 import { CreateBankAccountUseCaseImpl, GetAllBankAccountUseCaseImpl } from "./bank-account";
 import { CreateAmountUseCaseImpl } from "./amount";
 import { CreateUserUseCaseImpl } from './user';
+import { CreateCardUseCaseImpl } from './card';
 
 export const UseCaseProviders: Provider[] = [
   {
@@ -20,5 +21,9 @@ export const UseCaseProviders: Provider[] = [
   {
     provide: UseCaseSymbols.GetAllBankAccountUseCase,
     useClass: GetAllBankAccountUseCaseImpl,
+  },
+  {
+    provide: UseCaseSymbols.CreateCardUseCase,
+    useClass: CreateCardUseCaseImpl
   }
 ];

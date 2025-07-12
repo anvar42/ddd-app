@@ -6,9 +6,9 @@ import { GetAllBankAccountUseCase } from "src/use-cases/bank-account/get.bank-ac
 import { BankAccountPresenter, PresenterSymbols } from '../../../../presenters';
 import { CreateBankAccountDto } from '../dto';
 
-@ApiTags('Bank Account')
+@ApiTags('Bank-Account')
 @Controller("bank-account")
-export class CreateBankAccountControllerImpl {
+export class BankAccountController {
     constructor(
         @Inject(UseCaseSymbols.CreateBankAccountUseCase) private readonly createBankUseCase: CreateBankAccountUseCase,
         @Inject(UseCaseSymbols.GetAllBankAccountUseCase) private readonly getAllBankAccountUseCase: GetAllBankAccountUseCase,
